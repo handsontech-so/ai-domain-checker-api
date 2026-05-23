@@ -1,11 +1,11 @@
-from app.services.ollama_service import OllamaService
+from fastapi import FastAPI
+from app.api.routes import router
+from datetime import datetime
+
+app = FastAPI()
+app.include_router(router)
 
 
-def main():
-    print("Hello from ai-domain-checker-api!")
-    ollama = OllamaService()
-    print(ollama.generate("Hi iam ai-domain-checker-api"))
-
-
-if __name__ == "__main__":
-    main()
+@app.get("/")
+async def root():
+    return {"health": "ok", "datetime": datetime.now()}
