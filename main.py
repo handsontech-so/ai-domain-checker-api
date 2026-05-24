@@ -8,4 +8,4 @@ app.include_router(router)
 
 @app.get("/")
 async def root():
-    return {"health": "ok", "datetime": datetime.now()}
+    return {"health": "ok", "datetime": datetime.now(),"status":"running....."}
