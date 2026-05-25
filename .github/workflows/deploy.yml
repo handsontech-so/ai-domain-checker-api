@@ -18,7 +18,7 @@ jobs:
 
           script: |
             curl -LsSf https://astral.sh/uv/install.sh | sh
-            source .bashrc
+            export PATH="$HOME/.local/bin:$PATH"
             cd ~/apps/ai-domain-checker-api
             git restore .
             git pull origin main
