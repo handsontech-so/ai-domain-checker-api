@@ -17,6 +17,7 @@ jobs:
           key: ${{secrets.SSH_KEY}}
 
           script: |
+            curl -LsSf https://astral.sh/uv/install.sh | sh 
             cd ~/apps/ai-domain-checker-api
             git restore .
             git pull origin main
