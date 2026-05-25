@@ -10,5 +10,6 @@ dependencies = [
     "httpx>=0.28.1",
     "ollama>=0.6.2",
     "python-dotenv>=1.2.2",
+    "slowapi>=0.1.9",
     "uvicorn>=0.47.0",
 ]
