@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Domain Dossier — Threat Intake</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="grain"></div>
+
+    <header class="masthead">
+      <div class="masthead__tab">DOSSIER</div>
+      <div class="masthead__row">
+        <h1 class="masthead__title">Domain Dossier</h1>
+        <span class="masthead__sub">Threat Intake &amp; Reputation Desk</span>
+      </div>
+      <div class="masthead__rule"></div>
+    </header>
+
+    <main class="intake">
+      <section class="intake__hero">
+        <p class="intake__eyebrow">Case Filing — Form 10-A</p>
+        <h2 class="intake__headline">
+          Before you click it,<br />put it on record.
+        </h2>
+        <p class="intake__lede">
+          Submit any link and this desk will open a case: a risk score, a
+          verdict, and the evidence behind it.
+        </p>
+
+        <form id="intake-form" class="intake-form" novalidate>
+          <label for="domain-input" class="intake-form__label"
+            >Subject URL or domain</label
+          >
+          <div class="intake-form__row">
+            <span class="intake-form__prefix" aria-hidden="true">⌕</span>
+            <input
+              id="domain-input"
+              class="intake-form__input"
+              type="text"
+              name="domain"
+              placeholder="https://example.com"
+              autocomplete="off"
+              spellcheck="false"
+              required
+            />
+            <button type="submit" class="intake-form__submit" id="submit-btn">
+              <span class="btn-label">Open Case</span>
+            </button>
+          </div>
+          <p class="intake-form__error" id="form-error" role="alert" hidden></p>
+        </form>
+
+        <p class="intake__case-no">
+          Case No. <span id="case-no">000-000</span> · Desk open
+        </p>
+      </section>
+
+      <section class="dossier" id="dossier" hidden>
+        <div class="dossier__paper">
+          <div class="dossier__head">
+            <div>
+              <p class="dossier__label">Subject on file</p>
+              <p class="dossier__subject" id="dossier-subject">—</p>
+            </div>
+            <div class="stamp" id="stamp" data-risk="low">
+              <span class="stamp__text" id="stamp-text">LOW RISK</span>
+            </div>
+          </div>
+
+          <div class="dossier__body">
+            <div class="gauge-block">
+              <svg
+                class="gauge"
+                viewBox="0 0 160 160"
+                role="img"
+                aria-labelledby="gauge-title"
+              >
+                <title id="gauge-title">Risk score gauge</title>
+                <circle class="gauge__track" cx="80" cy="80" r="68"></circle>
+                <circle
+                  class="gauge__value"
+                  id="gauge-value"
+                  cx="80"
+                  cy="80"
+                  r="68"
+                ></circle>
+              </svg>
+              <div class="gauge-block__readout">
+                <span class="gauge-block__score" id="score-number">0</span>
+                <span class="gauge-block__of">/ 100</span>
+              </div>
+              <p class="gauge-block__caption">Composite risk score</p>
+            </div>
+
+            <div class="findings">
+              <p class="findings__message" id="dossier-message">—</p>
+              <p class="findings__label">Field notes</p>
+              <ul class="findings__list" id="findings-list"></ul>
+            </div>
+          </div>
+
+          <div class="dossier__foot">
+            <span id="dossier-timestamp">—</span>
+            <button type="button" class="dossier__new-case" id="new-case-btn">
+              File another →
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="dossier dossier--error" id="dossier-error" hidden>
+        <div class="dossier__paper dossier__paper--error">
+          <p class="dossier__label">Desk notice</p>
+          <p class="error-block__message" id="error-message">
+            The request could not be completed.
+          </p>
+          <button type="button" class="dossier__new-case" id="retry-btn">
+            Try again →
+          </button>
+        </div>
+      </section>
+
+      <section
+        class="dossier dossier--loading"
+        id="dossier-loading"
+        hidden
+        aria-live="polite"
+      >
+        <div class="dossier__paper dossier__paper--loading">
+          <div class="loading-stamp">
+            <span class="loading-stamp__ring"></span>
+            <span class="loading-stamp__text">Case in review…</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-foot">
+      <span
+        >Records desk closes at end of session. Nothing here is legal
+        advice.</span
+      >
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
