@@ -28,6 +28,6 @@ def rate_limit_exceeded(request: Request, exc: RateLimitExceeded):
     return _rate_limit_exceeded_handler(request, exc)
 
 
-@app.get("/")
+@app.get("/api/health")
 async def root():
     return {"health": "ok", "datetime": datetime.now(), "status": "running.....","message": "Welcome to the FastAPI application! deployed on digital ocean via ci/cd github actions."}

@@ -7,7 +7,7 @@ router = APIRouter(prefix="/domains", tags=["domains"])
 ollama = OllamaService()
 
 
-@router.post("/analyze")
+@router.post("/api/v1/analyze")
 async def analyze_domain(payload: Domain):
     try:
         domain = payload.domain
