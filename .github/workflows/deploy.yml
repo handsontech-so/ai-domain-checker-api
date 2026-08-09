@@ -22,6 +22,6 @@ jobs:
             git restore .
             git pull origin main
             source .venv/bin/activate
-            uv add -r requirements.txt
-            sudo systemctl restart ai-domain-checker-api
-            sudo systemctl status ai-domain-checker-api --no-pager
+            uv sync
+            sudo systemctl restart ai-domain-checker-api.service
+            sudo systemctl status ai-domain-checker-api.service --no-pager
