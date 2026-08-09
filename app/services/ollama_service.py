@@ -1,5 +1,5 @@
 from app.core.base_llm import BaseLlm
-from app.core.config import OLLAMA_API_KEY
+from app.core.config import OLLAMA_API_KEY, OLLAMA_MODEL
 from ollama import Client
 
 
@@ -9,11 +9,12 @@ class OllamaService(BaseLlm):
             host="https://ollama.com",
             headers={"Authorization": f"Bearer {OLLAMA_API_KEY}"},
         )
+        self.model = OLLAMA_MODEL
 
     def generate(self, prompt: str) -> str:
         try:
             response = self.client.chat(
-                model="minimax-m2.5",
+                model=self.model,
                 messages=[{"role": "user", "content": prompt}],
                 stream=False,
                 options={"temperature": 0.2},
