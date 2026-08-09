@@ -3,11 +3,11 @@ from app.schemas.domain import Domain
 from app.services.ollama_service import OllamaService
 from json.decoder import JSONDecoder
 
-router = APIRouter(prefix="/domains", tags=["domains"])
+router = APIRouter(prefix="/api/v1/domains", tags=["domains"])
 ollama = OllamaService()
 
 
-@router.post("/api/v1/analyze")
+@router.post("/analyze")
 async def analyze_domain(payload: Domain):
     try:
         domain = payload.domain
