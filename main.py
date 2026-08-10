@@ -9,7 +9,15 @@ from fastapi.middleware.cors import CORSMiddleware
 
 limiter = Limiter(key_func=get_remote_address, default_limits=["10/minute"])
 
-app = FastAPI()
+app = FastAPI(
+    title="AI Domain Checker",
+    version="1.0.0",
+    description="This project is a lightweight backend service for domain reputation analysis.",
+    docs_url="/api/docs",
+    openapi_url="/api/openapi.json",
+)
+
+
 app.state.limiter = limiter
 
 app.add_middleware(SlowAPIMiddleware)
@@ -30,4 +38,8 @@ def rate_limit_exceeded(request: Request, exc: RateLimitExceeded):
 
 @app.get("/api/health")
 async def root():
-    return {"health": "ok", "datetime": datetime.now(), "status": "running.....","message": "Welcome to the FastAPI application! deployed on digital ocean via ci/cd github actions."}
+    return {
+        "health": "ok",
+        "datetime": datetime.now(),
+        "status": "running.....",
+    }
